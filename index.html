@@ -104,14 +104,6 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .product-card:nth-child(1) .buy-button {
-            background: linear-gradient(45deg, #2c3e50, #3498db);
-        }
-
-        .product-card:nth-child(2) .buy-button {
-            background: linear-gradient(45deg, #e74c3c, #e67e22);
-        }
-
         .testimonials {
             display: flex;
             flex-direction: column;
@@ -184,19 +176,40 @@
             animation: fadeIn 1s ease-out;
         }
 
+        /* Mobile Horizontal Scroll */
         @media (max-width: 768px) {
             .products-grid {
-                grid-template-columns: repeat(2, 1fr);
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                margin: 20px -15px;
+                padding: 0 15px;
             }
-            
+
+            .products-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .product-card {
+                flex: 0 0 75%;
+                min-width: 250px;
+                margin-right: 15px;
+            }
+
             .product-image {
                 height: 200px;
             }
         }
 
         @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: 1fr;
+            .product-card {
+                flex: 0 0 85%;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -211,60 +224,59 @@
         </div>
 
         <div class="products-grid">
-            <!-- Row 1 -->
+            <!-- Products -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/QtDygLd2/file-6ua-FPwn-Vy-Bfv-CKS3y-Js-Rzi.webp" 
                      class="product-image" 
-                     alt="Sophia - AI Generated">
+                     alt="Sophia">
                 <h3>Sophia</h3>
                 <p>🎨 Artist • Coffee Lover</p>
-                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $199/hr</button>
+                <button class="buy-button" style="background: linear-gradient(45deg, #ff6b6b, #ff9f43);" onclick="showTeasingMessage()">Rent Now - $199/hr</button>
             </div>
 
             <div class="product-card">
                 <img src="https://i.postimg.cc/J7YsGZKL/file-Vk-Y5-XFj3cs7-AYe-TXYLtm5-Q.webp" 
                      class="product-image" 
-                     alt="Emma - AI Generated">
+                     alt="Emma">
                 <h3>Emma</h3>
-                <p>📚 Bookworm • Tea Enthusiast</p>
-                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $249/hr</button>
+                <p>📚 Bookworm • Tea Expert</p>
+                <button class="buy-button" style="background: linear-gradient(45deg, #2ecc71, #3498db);" onclick="showTeasingMessage()">Rent Now - $249/hr</button>
             </div>
 
             <div class="product-card">
                 <img src="https://i.postimg.cc/RZ7CQH1q/file-Yc-QJd-GYNd4rs-P9-SE7-Jr-Fvf.webp" 
                      class="product-image" 
-                     alt="Olivia - AI Generated">
+                     alt="Olivia">
                 <h3>Olivia</h3>
                 <p>💃 Dancer • Adventure Seeker</p>
-                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $299/hr</button>
+                <button class="buy-button" style="background: linear-gradient(45deg, #9b59b6, #e74c3c);" onclick="showTeasingMessage()">Rent Now - $299/hr</button>
             </div>
 
-            <!-- Row 2 -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/w3KHDq7h/file-66-Z8snc-DV7t-EGegj5-J4-SKZ.webp" 
                      class="product-image" 
-                     alt="Liam - AI Generated">
+                     alt="Liam">
                 <h3>Liam</h3>
                 <p>🎸 Guitarist • Poet</p>
-                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $199/hr</button>
+                <button class="buy-button" style="background: linear-gradient(45deg, #2c3e50, #3498db);" onclick="showTeasingMessage()">Rent Now - $199/hr</button>
             </div>
 
             <div class="product-card">
                 <img src="https://i.postimg.cc/ydmfQLbw/file-P9wydo-NAa6ixz-H5-Kw-Ckjs-E.webp" 
                      class="product-image" 
-                     alt="Ava - AI Generated">
+                     alt="Ava">
                 <h3>Ava</h3>
                 <p>📸 Photographer • Nature Lover</p>
-                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $249/hr</button>
+                <button class="buy-button" style="background: linear-gradient(45deg, #e67e22, #d35400);" onclick="showTeasingMessage()">Rent Now - $249/hr</button>
             </div>
 
             <div class="product-card">
                 <img src="https://i.postimg.cc/3xYR4NX7/file-Rz-TL1-Hdi3p-YLT9n-W5ri-Qp-C.webp" 
                      class="product-image" 
-                     alt="Noah - AI Generated">
+                     alt="Noah">
                 <h3>Noah</h3>
                 <p>🏋️ Gym Enthusiast • Chef</p>
-                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $299/hr</button>
+                <button class="buy-button" style="background: linear-gradient(45deg, #1abc9c, #16a085);" onclick="showTeasingMessage()">Rent Now - $299/hr</button>
             </div>
         </div>
 
@@ -316,7 +328,7 @@
             }
         }
 
-        // Testimonials data with AI-generated images
+        // Testimonials data
         const testimonials = [
             { 
                 user: "Sarah J.", 
@@ -332,16 +344,6 @@
                 user: "Megan T.", 
                 text: "Cried during Titanic then stole my fries! Iconic!",
                 img: "https://i.postimg.cc/RZ7CQH1q/file-Yc-QJd-GYNd4rs-P9-SE7-Jr-Fvf.webp" 
-            },
-            { 
-                user: "Lisa P.", 
-                text: "Brought his mom to our date! Unforgettable!",
-                img: "https://i.postimg.cc/w3KHDq7h/file-66-Z8snc-DV7t-EGegj5-J4-SKZ.webp" 
-            },
-            { 
-                user: "Rachel S.", 
-                text: "Got arrested mid-date! Best story ever!",
-                img: "https://i.postimg.cc/QtDygLd2/file-6ua-FPwn-Vy-Bfv-CKS3y-Js-Rzi.webp" 
             }
         ];
 
@@ -351,10 +353,7 @@
             "Scrolling through your phone... how pathetic!",
             "Roses are red, your inbox is blue... no messages for you!",
             "Dinner for one? That's your Valentine's menu!",
-            "Ain’t no hand to hold, just your right hand tonight!",
-            "Valentine’s Day? Just another lonely date!",
-            "Love ain't for you? Surprise surprise!",
-            "Pillow as date? At least it never says goodbye!"
+            "Ain’t no hand to hold, just your right hand tonight!"
         ];
 
         // Initialize
