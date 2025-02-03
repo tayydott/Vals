@@ -67,7 +67,7 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             margin: 30px 0;
         }
@@ -186,11 +186,17 @@
 
         @media (max-width: 768px) {
             .products-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .product-image {
                 height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -205,7 +211,7 @@
         </div>
 
         <div class="products-grid">
-            <!-- Product 1 -->
+            <!-- Row 1 -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/QtDygLd2/file-6ua-FPwn-Vy-Bfv-CKS3y-Js-Rzi.webp" 
                      class="product-image" 
@@ -215,7 +221,6 @@
                 <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $199/hr</button>
             </div>
 
-            <!-- Product 2 -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/J7YsGZKL/file-Vk-Y5-XFj3cs7-AYe-TXYLtm5-Q.webp" 
                      class="product-image" 
@@ -225,7 +230,6 @@
                 <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $249/hr</button>
             </div>
 
-            <!-- Product 3 -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/RZ7CQH1q/file-Yc-QJd-GYNd4rs-P9-SE7-Jr-Fvf.webp" 
                      class="product-image" 
@@ -235,7 +239,7 @@
                 <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $299/hr</button>
             </div>
 
-            <!-- Product 4 -->
+            <!-- Row 2 -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/w3KHDq7h/file-66-Z8snc-DV7t-EGegj5-J4-SKZ.webp" 
                      class="product-image" 
@@ -245,7 +249,6 @@
                 <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $199/hr</button>
             </div>
 
-            <!-- Product 5 -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/ydmfQLbw/file-P9wydo-NAa6ixz-H5-Kw-Ckjs-E.webp" 
                      class="product-image" 
@@ -255,7 +258,6 @@
                 <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $249/hr</button>
             </div>
 
-            <!-- Product 6 -->
             <div class="product-card">
                 <img src="https://i.postimg.cc/3xYR4NX7/file-Rz-TL1-Hdi3p-YLT9n-W5ri-Qp-C.webp" 
                      class="product-image" 
