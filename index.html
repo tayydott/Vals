@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +15,11 @@
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
             background: var(--background);
             font-family: 'Poppins', sans-serif;
             color: #8b0000;
@@ -26,6 +28,29 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            position: relative;
+        }
+
+        .broken-heart {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0;
+            animation: fall 6s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .container {
@@ -39,45 +64,65 @@
         .header {
             text-align: center;
             margin: 20px 0;
+            animation: fadeIn 1s ease-out;
         }
 
         .header h1 {
             font-size: 2.5rem;
             color: var(--primary-color);
             margin: 10px 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(255, 0, 102, 0.2);
         }
 
-        .product-image {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            margin: 20px auto;
-            display: block;
-            object-fit: cover;
-            border: 5px solid var(--secondary-color);
-            box-shadow: 0 0 30px rgba(255,0,102,0.2);
-        }
-
-        .features {
-            display: flex;
-            flex-direction: column;
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin: 30px 0;
         }
 
-        .feature-box {
-            background: rgba(255,255,255,0.95);
-            padding: 20px;
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
+            padding: 15px;
             text-align: center;
-            font-weight: 600;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 0, 102, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
             transition: transform 0.3s ease;
         }
 
-        .feature-box:active {
-            transform: scale(0.98);
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 102, 0.3);
+        }
+
+        .buy-button:active {
+            transform: scale(0.95);
         }
 
         .testimonials {
@@ -88,61 +133,44 @@
         }
 
         .testimonial {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-out;
         }
 
-        .testimonial-user {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-            object-fit: cover;
-        }
-
-        .buy-button {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 30px auto;
-            padding: 18px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255,0,102,0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .buy-button:active {
-            transform: scale(0.95);
-        }
-
-        #teasing-message {
+        #teasing-message, #darwin-message {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(255,255,255,0.98);
+            background: rgba(255, 255, 255, 0.98);
             padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            box-shadow: 0 0 50px rgba(255, 0, 102, 0.3);
             z-index: 1000;
             width: 90%;
             max-width: 400px;
             text-align: center;
+            animation: popUp 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        @keyframes popUp {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            80% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .footer {
@@ -150,184 +178,160 @@
             margin-top: 40px;
             padding: 20px 0;
             border-top: 2px dashed var(--secondary-color);
+            animation: fadeIn 1s ease-out;
         }
 
-        .developer-credit {
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            margin-top: 15px;
-        }
-
-        @media (min-width: 768px) {
-            .container {
-                width: 90%;
-                max-width: 800px;
-            }
-            
-            .features {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .feature-box {
-                width: 45%;
-                max-width: 300px;
-            }
+        .heartbreak-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
         }
     </style>
 </head>
 <body>
+    <div class="heartbreak-overlay" id="heart-container"></div>
+    
     <div class="container">
         <div class="header">
-            <h1>💘 Temporary Boyfriend™ 💘</h1>
-            <h3>"Faux-mance That'll Make Your Ex Jealous!"</h3>
+            <h1>💔 Temporary Boyfriend™ 💔</h1>
+            <h3>"Because Real Love is Overrated!"</h3>
         </div>
 
-        <img src="https://picsum.photos/seed/handsome-man/500/500" class="product-image" alt="Temporary Boyfriend">
-
-        <div class="features">
-            <div class="feature-box">💌 Daily Love Notes</div>
-            <div class="feature-box">📸 Instagram-Worthy Pics</div>
-            <div class="feature-box">🎭 Professional Acting</div>
-            <div class="feature-box">⏳ 24/7 Availability</div>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://picsum.photos/seed/heartbreak1/400/400" class="product-image" alt="Jason">
+                <h3>Jason</h3>
+                <p>💔 Professional Ghosting Expert</p>
+                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $99/hr</button>
+            </div>
+            <div class="product-card">
+                <img src="https://picsum.photos/seed/heartbreak2/400/400" class="product-image" alt="Ryan">
+                <h3>Ryan</h3>
+                <p>📸 Instagram Boyfriend Pro</p>
+                <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $149/hr</button>
+            </div>
         </div>
 
-        <div class="testimonials" id="testimonials-container">
-            <!-- Testimonials will be inserted here by JS -->
-        </div>
-
-        <button class="buy-button" onclick="showTeasingMessage()">RENT NOW!</button>
-
-        <div class="footer">
-            <p>© 2024 Temporary Boyfriend™</p>
-            <p class="developer-credit">Developed by Alvin A.K.A TayDot</p>
-        </div>
+        <div class="testimonials" id="testimonials-container"></div>
 
         <div id="teasing-message">
             <h2>😏 Feeling Lonely? 😏</h2>
             <p id="message-text"></p>
-            <button onclick="hideTeasingMessage()" style="
-                margin-top: 15px;
-                padding: 10px 25px;
-                background: var(--secondary-color);
-                border: none;
-                border-radius: 20px;
-                color: white;
-                font-weight: 600;
-            ">
+            <button class="buy-button" onclick="showDarwinMessage()" style="margin-top: 15px;">
+                OK, I'll die lonely 😭
+            </button>
+        </div>
+
+        <div id="darwin-message">
+            <h2>Wait a minute... 🚨</h2>
+            <p style="margin: 15px 0;">There's actually a lonely guy who wants a Valentine! 💘</p>
+            <div style="margin: 20px 0; animation: pulse 2s infinite;">
+                <h3>Darwin Nunez</h3>
+                <a href="https://wa.me/2348094707330" class="buy-button" style="text-decoration: none; display: inline-block;">
+                    💌 Message on WhatsApp
+                </a>
+            </div>
+            <p style="font-size: 0.9em;">Good luck... if you don't reject each other's ugly ass faces 😘</p>
+            <button class="buy-button" onclick="hideDarwinMessage()" style="margin-top: 15px;">
                 Close
             </button>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Temporary Heartbreak™</p>
+            <p class="developer-credit">Developed with 💔 by Alvin A.K.A TayDot</p>
         </div>
     </div>
 
     <script>
-        // Harsh teasing messages from lyrics
-        const teasingMessages = [
-            "February’s here, but where’s your special friend?",
-            "Scrolling through your phone, liking couple goals... sad!",
-            "Roses are red, your inbox is blue... no messages for you!",
-            "Dinner for one? That's your Valentine's menu!",
-            "No teddy bears, no sweet love letters - just you and Netflix!",
-            "Ain’t no hand to hold, just your right hand tonight!",
-            "DMs on read? Must be your dating track record!",
-            "Valentine’s Day? Just another lonely date!",
-            "Love ain't for you? Ain't no shame... okay maybe a little!",
-            "Next year gon’ be different? Yeah, we've heard that before!",
-            "Sipping tea alone? That's your V-Day score!",
-            "Cold weather outside, colder bed inside!",
-            "Pillow as date? At least it never says goodbye!",
-            "Couple goals? More like single patrols!",
-            "Special friend? Your shadow doesn't count!"
-        ];
+        // Create broken heart animation
+        function createHearts() {
+            const container = document.getElementById('heart-container');
+            const heartCount = 15;
+            
+            for(let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'broken-heart';
+                heart.innerHTML = '💔';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                container.appendChild(heart);
+            }
+        }
 
         // Testimonials data
         const testimonials = [
-            {
-                user: "Sarah J.",
-                text: "Ghosted me at midnight sharp! 10/10 commitment!",
-                img: "https://picsum.photos/seed/user1/100/100"
-            },
-            {
-                user: "Emily R.",
-                text: "Fake-proposed then asked for gas money! Legend!",
-                img: "https://picsum.photos/seed/user2/100/100"
-            },
-            {
-                user: "Megan T.",
-                text: "Cried during Titanic then stole my fries! Iconic!",
-                img: "https://picsum.photos/seed/user3/100/100"
-            },
-            {
-                user: "Lisa P.",
-                text: "Brought his mom to our date! Unforgettable!",
-                img: "https://picsum.photos/seed/user4/100/100"
-            },
-            {
-                user: "Rachel S.",
-                text: "Got arrested mid-date! Best story ever!",
-                img: "https://picsum.photos/seed/user5/100/100"
-            },
-            {
-                user: "Jessica B.",
-                text: "Forgot my name twice! Professional af!",
-                img: "https://picsum.photos/seed/user6/100/100"
-            },
-            {
-                user: "Olivia M.",
-                text: "Told my dad about his crypto scam! Hilarious!",
-                img: "https://picsum.photos/seed/user7/100/100"
-            },
-            {
-                user: "Sophia K.",
-                text: "Compared me to his ex... who's fictional!",
-                img: "https://picsum.photos/seed/user8/100/100"
-            },
-            {
-                user: "Chloe V.",
-                text: "Ate my pet goldfish! 5 stars for drama!",
-                img: "https://picsum.photos/seed/user9/100/100"
-            },
-            {
-                user: "Emma L.",
-                text: "Proposed to waitress mid-date! Legendary!",
-                img: "https://picsum.photos/seed/user10/100/100"
-            }
+            { user: "Sarah J.", text: "Ghosted me at midnight sharp! 10/10 commitment!", img: "https://picsum.photos/seed/user1/100/100" },
+            { user: "Emily R.", text: "Fake-proposed then asked for gas money! Legend!", img: "https://picsum.photos/seed/user2/100/100" },
+            { user: "Megan T.", text: "Cried during Titanic then stole my fries! Iconic!", img: "https://picsum.photos/seed/user3/100/100" },
+            { user: "Lisa P.", text: "Brought his mom to our date! Unforgettable!", img: "https://picsum.photos/seed/user4/100/100" },
+            { user: "Rachel S.", text: "Got arrested mid-date! Best story ever!", img: "https://picsum.photos/seed/user5/100/100" }
         ];
 
-        // Populate testimonials
-        const testimonialContainer = document.getElementById('testimonials-container');
-        testimonials.forEach(testimonial => {
-            const div = document.createElement('div');
-            div.className = 'testimonial';
-            div.innerHTML = `
-                <div class="testimonial-user">
-                    <img src="${testimonial.img}" class="user-avatar" alt="User">
-                    <h4>${testimonial.user}</h4>
-                </div>
-                <p>"${testimonial.text}"</p>
-            `;
-            testimonialContainer.appendChild(div);
-        });
+        // Harsh messages
+        const teasingMessages = [
+            "February’s here, but where’s your special friend?",
+            "Scrolling through your phone... how pathetic!",
+            "Roses are red, your inbox is blue... no messages for you!",
+            "Dinner for one? That's your Valentine's menu!",
+            "Ain’t no hand to hold, just your right hand tonight!",
+            "Valentine’s Day? Just another lonely date!",
+            "Love ain't for you? Surprise surprise!",
+            "Pillow as date? At least it never says goodbye!"
+        ];
 
-        // Teasing message functions
+        // Initialize
+        function init() {
+            createHearts();
+            populateTestimonials();
+        }
+
+        function populateTestimonials() {
+            const container = document.getElementById('testimonials-container');
+            testimonials.forEach(testimonial => {
+                const div = document.createElement('div');
+                div.className = 'testimonial';
+                div.innerHTML = `
+                    <div class="testimonial-user">
+                        <img src="${testimonial.img}" class="user-avatar" alt="${testimonial.user}">
+                        <h4>${testimonial.user}</h4>
+                    </div>
+                    <p>"${testimonial.text}"</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
         function showTeasingMessage() {
             const message = teasingMessages[Math.floor(Math.random() * teasingMessages.length)];
             document.getElementById('message-text').textContent = message;
             document.getElementById('teasing-message').style.display = 'block';
         }
 
-        function hideTeasingMessage() {
+        function showDarwinMessage() {
             document.getElementById('teasing-message').style.display = 'none';
+            document.getElementById('darwin-message').style.display = 'block';
         }
 
-        // Rotate boyfriend image every 5 seconds
-        let imageIndex = 0;
+        function hideDarwinMessage() {
+            document.getElementById('darwin-message').style.display = 'none';
+        }
+
+        // Start the heartbreak
+        init();
+
+        // Rotate product images every 10 seconds
         setInterval(() => {
-            imageIndex++;
-            document.querySelector('.product-image').src = 
-                `https://picsum.photos/seed/boyfriend${imageIndex}/500/500`;
-        }, 5000);
+            document.querySelectorAll('.product-image').forEach(img => {
+                const newSeed = Math.floor(Math.random() * 1000);
+                img.src = `https://picsum.photos/seed/${newSeed}/400/400`;
+            });
+        }, 10000);
     </script>
 </body>
 </html>
