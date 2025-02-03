@@ -82,25 +82,15 @@
             cursor: pointer;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 0, 102, 0.3);
-        }
-
         .product-image {
             width: 100%;
-            height: 150px;
+            height: 180px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 10px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
-            filter: brightness(1.05);
-            border: 3px solid #ffffff;
-        }
-
-        .product-image:hover {
-            transform: scale(1.03);
-            filter: brightness(1.1) contrast(1.1);
         }
 
         .buy-button {
@@ -135,6 +125,22 @@
             border-radius: 15px;
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
             animation: slideIn 0.5s ease-out;
+        }
+
+        .testimonial-user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid #ff69b4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         #teasing-message, #darwin-message {
@@ -177,6 +183,16 @@
             border-top: 2px dashed var(--secondary-color);
             animation: fadeIn 1s ease-out;
         }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,13 +206,17 @@
 
         <div class="products-grid">
             <div class="product-card">
-                <img src="https://picsum.photos/seed/black-teen/400/400" class="product-image" alt="Tyler">
+                <img src="https://images.generated.photos/vKrLOsUvRlQfSQ4X7wqClX6ZkX7qJjG3r5X4y4JjH6s/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/LzAwMDM1MTguanBn.jpg" 
+                     class="product-image" 
+                     alt="Tyler - AI Generated">
                 <h3>Tyler</h3>
                 <p>🏀 Basketball Captain • Gentle Giant</p>
                 <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $199/hr</button>
             </div>
             <div class="product-card">
-                <img src="https://picsum.photos/seed/white-teen/400/400" class="product-image" alt="Ryan">
+                <img src="https://images.generated.photos/6mA1S3Qx5k2m5D8WYk0oEfGjP5mE3H6XHqZt3yJjH6s/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/LzAwMzg1NDQuanBn.jpg" 
+                     class="product-image" 
+                     alt="Ryan - AI Generated">
                 <h3>Ryan</h3>
                 <p>🎸 Guitar Pro • Poetry Enthusiast</p>
                 <button class="buy-button" onclick="showTeasingMessage()">Rent Now - $249/hr</button>
@@ -251,13 +271,33 @@
             }
         }
 
-        // Testimonials data
+        // Testimonials data with AI-generated images
         const testimonials = [
-            { user: "Sarah J.", text: "Ghosted me at midnight sharp! 10/10 commitment!", img: "https://picsum.photos/seed/user1/100/100" },
-            { user: "Emily R.", text: "Fake-proposed then asked for gas money! Legend!", img: "https://picsum.photos/seed/user2/100/100" },
-            { user: "Megan T.", text: "Cried during Titanic then stole my fries! Iconic!", img: "https://picsum.photos/seed/user3/100/100" },
-            { user: "Lisa P.", text: "Brought his mom to our date! Unforgettable!", img: "https://picsum.photos/seed/user4/100/100" },
-            { user: "Rachel S.", text: "Got arrested mid-date! Best story ever!", img: "https://picsum.photos/seed/user5/100/100" }
+            { 
+                user: "Sarah J.", 
+                text: "Ghosted me at midnight sharp! 10/10 commitment!",
+                img: "https://images.generated.photos/vSE-ZJfSgVJzq5g6kE3VJjH6s/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/LzAwMDM1MTguanBn.jpg" 
+            },
+            { 
+                user: "Emily R.", 
+                text: "Fake-proposed then asked for gas money! Legend!",
+                img: "https://images.generated.photos/6mA1S3Qx5k2m5D8WYk0oEfGjP5mE3H6XHqZt3yJjH6s/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/LzAwMzg1NDQuanBn.jpg" 
+            },
+            { 
+                user: "Megan T.", 
+                text: "Cried during Titanic then stole my fries! Iconic!",
+                img: "https://images.generated.photos/vKrLOsUvRlQfSQ4X7wqClX6ZkX7qJjG3r5X4y4JjH6s/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/LzAwMDM1MTguanBn.jpg" 
+            },
+            { 
+                user: "Lisa P.", 
+                text: "Brought his mom to our date! Unforgettable!",
+                img: "https://images.generated.photos/6mA1S3Qx5k2m5D8WYk0oEfGjP5mE3H6XHqZt3yJjH6s/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/LzAwMzg1NDQuanBn.jpg" 
+            },
+            { 
+                user: "Rachel S.", 
+                text: "Got arrested mid-date! Best story ever!",
+                img: "https://images.generated.photos/vSE-ZJfSgVJzq5g6kE3VJjH6s/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/LzAwMDM1MTguanBn.jpg" 
+            }
         ];
 
         // Harsh messages
@@ -276,7 +316,6 @@
         function init() {
             createHearts();
             populateTestimonials();
-            rotateProductImages();
         }
 
         function populateTestimonials() {
@@ -293,15 +332,6 @@
                 `;
                 container.appendChild(div);
             });
-        }
-
-        function rotateProductImages() {
-            setInterval(() => {
-                document.querySelectorAll('.product-image').forEach(img => {
-                    const newSeed = Math.floor(Math.random() * 1000);
-                    img.src = `https://picsum.photos/seed/${newSeed}/400/400`;
-                });
-            }, 10000);
         }
 
         function showTeasingMessage() {
