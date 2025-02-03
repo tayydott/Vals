@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporary Boyfriend™ - Valentine's Special</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap');
+
+        body {
+            margin: 0;
+            background: #ffdde1 url('https://i.imgur.com/7BSp8ET.png');
+            font-family: 'Dancing Script', cursive;
+            color: #8b0000;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
+            margin: 20px 0;
+            color: #ff0066;
+        }
+
+        .product-image {
+            width: 350px;
+            border: 5px solid #ff69b4;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 0 50px rgba(255, 0, 102, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+            perspective: 1000px;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transform: rotateY(15deg);
+            transition: all 0.5s ease;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-box:hover {
+            transform: rotateY(0deg) scale(1.05);
+            background: rgba(255, 230, 230, 0.95);
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .testimonial {
+            background: rgba(255, 228, 225, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            transform: rotate(-1deg);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .testimonial:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .buy-button {
+            display: block;
+            width: 250px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff0066, #ff69b4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 0, 102, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .buy-button:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 10px 25px rgba(255, 0, 102, 0.5);
+            background: linear-gradient(45deg, #ff69b4, #ff0066);
+        }
+
+        #teasing-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 0, 102, 0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 500px;
+            border: 3px solid #ff69b4;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+            color: #8b0000;
+            padding: 20px;
+            border-top: 2px dotted #ff69b4;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+        }
+
+        .developer-credit {
+            font-weight: bold;
+            color: #ff0066;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .developer-credit:hover {
+            transform: rotate(-2deg) scale(1.1);
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff0066;
+            animation: float 6s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); }
+            50% { transform: scale(1); }
+            100% { transform: scale(0.95); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes hearts {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts-container"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>💘 Temporary Boyfriend™ 💘</h1>
+            <h3>"Faux-mance That'll Make Your Ex Jealous!"</h3>
+        </div>
+
+        <img src="https://i.imgur.com/3QfT5qj.png" class="product-image" alt="Cheesy Stock Photo Boyfriend">
+
+        <div class="features">
+            <div class="feature-box">💝 Pretend Love Expertise</div>
+            <div class="feature-box">🎭 Professional Roleplayer</div>
+            <div class="feature-box">📸 Instagram-Worthy Moments</div>
+        </div>
+
+        <div class="testimonials" id="testimonials-container">
+            <!-- Testimonials will be inserted here by JS -->
+        </div>
+
+        <button class="buy-button" onclick="showTeasingMessage()">RENT NOW!</button>
+
+        <div class="footer">
+            <p>© 2024 Temporary Boyfriend™ - All pretend rights reserved</p>
+            <p class="developer-credit">
+                Developed with 💔 (and chocolate) by Alvin A.K.A TayDot
+            </p>
+        </div>
+
+        <div id="teasing-message">
+            <h2 style="margin: 0 0 20px 0;">😏 Aww, Someone's Lonely! 😏</h2>
+            <p id="message-text" style="font-size: 20px;"></p>
+            <button onclick="hideTeasingMessage()" style="
+                margin-top: 20px;
+                padding: 10px 30px;
+                background: #ff69b4;
+                border: none;
+                border-radius: 25px;
+                color: white;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            ">
+                OK, I'll Die Alone 😭
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Floating hearts generator
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+                heart.style.animationName = 'hearts';
+                heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Testimonials data
+        const testimonials = [
+            "He showed up to my sister's wedding in swim trunks! 10/10 would pretend-date again!",
+            "Ghosted me exactly at midnight. Professional!",
+            "Worth every penny until the cops arrived!",
+            "My cat liked him more than my real ex!",
+            "Fake-proposed during dinner! Mom still asks about him!",
+            "Cried during Titanic then asked for gas money!"
+        ];
+
+        // Populate testimonials
+        const container = document.getElementById('testimonials-container');
+        testimonials.forEach(text => {
+            const div = document.createElement('div');
+            div.className = 'testimonial';
+            div.textContent = text;
+            container.appendChild(div);
+        });
+
+        // Teasing messages
+        const teasingMessages = [
+            "Don't worry, we won't tell anyone you paid for affection!",
+            "Your secret is safe with us... and our mailing list!",
+            "We accept all major credit cards and dignity!",
+            "Romance is just one click away! (Terms and conditions apply)",
+            "Finally, someone who appreciates our 24-hour return policy!"
+        ];
+
+        function showTeasingMessage() {
+            const message = teasingMessages[Math.floor(Math.random() * teasingMessages.length)];
+            document.getElementById('message-text').textContent = message;
+            document.getElementById('teasing-message').style.display = 'block';
+        }
+
+        function hideTeasingMessage() {
+            document.getElementById('teasing-message').style.display = 'none';
+        }
+
+        // Initialize floating hearts
+        createHearts();
+
+        // Add parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth - e.pageX * 2) / 90;
+            const y = (window.innerHeight - e.pageY * 2) / 90;
+            document.querySelector('.product-image').style.transform = 
+                `rotateY(${x}deg) rotateX(${y}deg) scale(1.05)`;
+        });
+    </script>
+</body>
+</html>
