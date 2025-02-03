@@ -22,6 +22,10 @@
             font-family: 'Poppins', sans-serif;
             color: #8b0000;
             overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .container {
@@ -189,21 +193,8 @@
             <div class="feature-box">⏳ 24/7 Availability</div>
         </div>
 
-        <div class="testimonials">
-            <div class="testimonial">
-                <div class="testimonial-user">
-                    <img src="https://picsum.photos/seed/user1/100/100" class="user-avatar" alt="User">
-                    <h4>Sarah J.</h4>
-                </div>
-                <p>"Ghosted me exactly at midnight. Perfect service!"</p>
-            </div>
-            <div class="testimonial">
-                <div class="testimonial-user">
-                    <img src="https://picsum.photos/seed/user2/100/100" class="user-avatar" alt="User">
-                    <h4>Emily R.</h4>
-                </div>
-                <p>"My cat liked him more than my real ex!"</p>
-            </div>
+        <div class="testimonials" id="testimonials-container">
+            <!-- Testimonials will be inserted here by JS -->
         </div>
 
         <button class="buy-button" onclick="showTeasingMessage()">RENT NOW!</button>
@@ -231,14 +222,95 @@
     </div>
 
     <script>
+        // Harsh teasing messages from lyrics
         const teasingMessages = [
-            "Don't worry, we accept all major credit cards!",
-            "Your secret is safe with us!",
-            "Love is just a click away!",
-            "We promise he'll remember your name!",
-            "Comes with free imaginary pet!"
+            "February’s here, but where’s your special friend?",
+            "Scrolling through your phone, liking couple goals... sad!",
+            "Roses are red, your inbox is blue... no messages for you!",
+            "Dinner for one? That's your Valentine's menu!",
+            "No teddy bears, no sweet love letters - just you and Netflix!",
+            "Ain’t no hand to hold, just your right hand tonight!",
+            "DMs on read? Must be your dating track record!",
+            "Valentine’s Day? Just another lonely date!",
+            "Love ain't for you? Ain't no shame... okay maybe a little!",
+            "Next year gon’ be different? Yeah, we've heard that before!",
+            "Sipping tea alone? That's your V-Day score!",
+            "Cold weather outside, colder bed inside!",
+            "Pillow as date? At least it never says goodbye!",
+            "Couple goals? More like single patrols!",
+            "Special friend? Your shadow doesn't count!"
         ];
 
+        // Testimonials data
+        const testimonials = [
+            {
+                user: "Sarah J.",
+                text: "Ghosted me at midnight sharp! 10/10 commitment!",
+                img: "https://picsum.photos/seed/user1/100/100"
+            },
+            {
+                user: "Emily R.",
+                text: "Fake-proposed then asked for gas money! Legend!",
+                img: "https://picsum.photos/seed/user2/100/100"
+            },
+            {
+                user: "Megan T.",
+                text: "Cried during Titanic then stole my fries! Iconic!",
+                img: "https://picsum.photos/seed/user3/100/100"
+            },
+            {
+                user: "Lisa P.",
+                text: "Brought his mom to our date! Unforgettable!",
+                img: "https://picsum.photos/seed/user4/100/100"
+            },
+            {
+                user: "Rachel S.",
+                text: "Got arrested mid-date! Best story ever!",
+                img: "https://picsum.photos/seed/user5/100/100"
+            },
+            {
+                user: "Jessica B.",
+                text: "Forgot my name twice! Professional af!",
+                img: "https://picsum.photos/seed/user6/100/100"
+            },
+            {
+                user: "Olivia M.",
+                text: "Told my dad about his crypto scam! Hilarious!",
+                img: "https://picsum.photos/seed/user7/100/100"
+            },
+            {
+                user: "Sophia K.",
+                text: "Compared me to his ex... who's fictional!",
+                img: "https://picsum.photos/seed/user8/100/100"
+            },
+            {
+                user: "Chloe V.",
+                text: "Ate my pet goldfish! 5 stars for drama!",
+                img: "https://picsum.photos/seed/user9/100/100"
+            },
+            {
+                user: "Emma L.",
+                text: "Proposed to waitress mid-date! Legendary!",
+                img: "https://picsum.photos/seed/user10/100/100"
+            }
+        ];
+
+        // Populate testimonials
+        const testimonialContainer = document.getElementById('testimonials-container');
+        testimonials.forEach(testimonial => {
+            const div = document.createElement('div');
+            div.className = 'testimonial';
+            div.innerHTML = `
+                <div class="testimonial-user">
+                    <img src="${testimonial.img}" class="user-avatar" alt="User">
+                    <h4>${testimonial.user}</h4>
+                </div>
+                <p>"${testimonial.text}"</p>
+            `;
+            testimonialContainer.appendChild(div);
+        });
+
+        // Teasing message functions
         function showTeasingMessage() {
             const message = teasingMessages[Math.floor(Math.random() * teasingMessages.length)];
             document.getElementById('message-text').textContent = message;
@@ -249,7 +321,7 @@
             document.getElementById('teasing-message').style.display = 'none';
         }
 
-        // Add image rotation every 5 seconds
+        // Rotate boyfriend image every 5 seconds
         let imageIndex = 0;
         setInterval(() => {
             imageIndex++;
